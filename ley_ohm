@@ -1,0 +1,35 @@
+#Posible solucion al ejericio 42 de https://retosdeprogramacion.com/ejercicios/
+#Crea una función que calcule el valor del parámetro perdido
+# * correspondiente a la ley de Ohm.
+# * - Enviaremos a la función 2 de los 3 parámetros (V, R, I), y retornará
+# *   el valor del tercero (redondeado a 2 decimales).
+# * - Si los parámetros son incorrectos o insuficientes, la función retornará
+# *   la cadena de texto "Invalid values".
+
+def ley_ohm(v=None, r=None, i=None):
+    
+    if v is None and r is None or v is None and i is None or r is None and i is None:
+        return "Parametros insuficientes para realizar el calculo deseado"
+    
+    elif v is None:
+        resultado = round(r*i, 2)
+        return f"La tension de una corriente de {i} amperios que atraviesa una resistencia de {r} ohm es de {resultado} voltios"
+    
+    elif r is None:
+        try:
+            resultado = round(v/i, 2)
+            return f"La resistencia sometida a una tension de {v} voltios por la que circula {i} amperios es de {resultado} ohm"
+        except ZeroDivisionError:
+            return "No se puede dividir entre 0"
+            
+    elif i is None:
+        try:
+            resultado = round(v/r, 2)
+            return f"La corriente que circula por una resistencia de {r} ohm sometida a una tensión de {v} voltios es de {resultado} amperios"
+        except ZeroDivisionError:
+            return "No se puede dividir entre 0"
+    
+    
+        
+    else:
+        return "Invalid values"
